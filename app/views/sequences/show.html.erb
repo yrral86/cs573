@@ -5,6 +5,15 @@
   <%= @sequence.src %>
 </p>
 
+<% (1..10).to_a.each do |position| %>
+
+<p>
+  <b>Chord <%= position %>:</b>
+  <% chord = @sequence.ordered_chords[position - 1] %>
+  <%= chord.name unless chord.nil?  %>
+</p>
+
+<% end %>
 
 <%= link_to 'Edit', edit_sequence_path(@sequence) %> |
 <%= link_to 'Back', sequences_path %>
