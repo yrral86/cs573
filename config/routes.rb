@@ -1,4 +1,7 @@
 TuringTest::Application.routes.draw do
+  resources :chords
+
+
   get "run_test/index"
 
   get "run_test/start"

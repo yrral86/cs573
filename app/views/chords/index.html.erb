@@ -1,0 +1,25 @@
+<h1>Listing chords</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>File</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @chords.each do |chord| %>
+  <tr>
+    <td><%= chord.name %></td>
+    <td><%= chord.file %></td>
+    <td><%= link_to 'Show', chord %></td>
+    <td><%= link_to 'Edit', edit_chord_path(chord) %></td>
+    <td><%= link_to 'Destroy', chord, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Chord', new_chord_path %>
