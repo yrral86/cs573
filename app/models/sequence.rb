@@ -4,7 +4,7 @@ class Sequence < ActiveRecord::Base
 
   def ordered_chords
     @ordered_chords ||= ChordSequence.where(:sequence_id => self.id).order(:position).map do |cs|
-      Chord.find(cs.chord_id)
+      Chord.cached_find(cs.chord_id)
     end
     @ordered_chords
   end
