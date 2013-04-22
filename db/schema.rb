@@ -11,11 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422013509) do
+ActiveRecord::Schema.define(:version => 20130422020618) do
 
   create_table "chords", :force => true do |t|
     t.text     "name"
     t.text     "file"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sequences", :force => true do |t|
+    t.text     "src"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
