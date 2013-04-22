@@ -1,4 +1,7 @@
 TuringTest::Application.routes.draw do
+  resources :sequences
+
+
   resources :chords
 
 
