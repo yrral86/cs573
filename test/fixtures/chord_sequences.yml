@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  chord_id: 1
+  sequence_id: 1
+  position: 1
+
+two:
+  chord_id: 1
+  sequence_id: 1
+  position: 1
