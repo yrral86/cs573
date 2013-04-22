@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422020745) do
+ActiveRecord::Schema.define(:version => 20130422032409) do
 
   create_table "chord_sequences", :force => true do |t|
     t.integer  "chord_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20130422020745) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "chord_sequences", ["sequence_id"], :name => "index_chord_sequences_on_sequence_id"
 
   create_table "chords", :force => true do |t|
     t.text     "name"
