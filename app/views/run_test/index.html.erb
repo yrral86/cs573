@@ -1,3 +1,6 @@
-0<h1>RunTest#index</h1>
-<p>Find me in app/views/run_test/index.html.erb</p>
-<%= @test_session.inspect %>
+<h1>Muscical Turing Test</h1>
+<p>The rules are simple. You will be presented a series of chord sequences.
+For each sequence, you will see a play button. After playing the sequence,
+you will select if you think the sequence was produced by a human or computer.
+Select start below to begin.</p>
+<%= button_to :start, {:action => :start}, {:method => :get} %>
