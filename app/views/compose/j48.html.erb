@@ -1,2 +1,7 @@
-<h1>Compose#j48</h1>
-<p>Find me in app/views/compose/j48.html.erb</p>
+<h1>Compose using C4.5</h1>
+<%= form_for :sequence do |f| %>
+First Chord: <%= f.select :chord1, @chord_options %><br />
+Second Chord: <%= f.select :chord2, @chord_options %><br />
+Third Chord: <%= f.select :chord3, @chord_options %><br />
+<%= f.submit :compose %>
+<% end %>

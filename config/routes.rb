@@ -2,6 +2,7 @@ TuringTest::Application.routes.draw do
   get "compose/index"
 
   get "compose/j48"
+  post "compose/j48"
 
   get "compose/randomforests"
 
