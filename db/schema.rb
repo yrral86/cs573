@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422032409) do
+ActiveRecord::Schema.define(:version => 20130422215353) do
 
   create_table "chord_sequences", :force => true do |t|
     t.integer  "chord_id"
@@ -30,10 +30,19 @@ ActiveRecord::Schema.define(:version => 20130422032409) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "sequence_trials", :force => true do |t|
+    t.integer  "sequence_id"
+    t.integer  "test_session_id"
+    t.boolean  "correct"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "sequences", :force => true do |t|
     t.text     "src"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "seed_id"
   end
 
   create_table "test_sessions", :force => true do |t|
