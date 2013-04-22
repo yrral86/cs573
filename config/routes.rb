@@ -1,4 +1,12 @@
 TuringTest::Application.routes.draw do
+  get "run_test/index"
+
+  get "run_test/start"
+
+  get "run_test/next"
+
+  get "run_test/finish"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
