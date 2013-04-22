@@ -11,6 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130422011645) do
+
+  create_table "test_sessions", :force => true do |t|
+    t.text     "user_agent"
+    t.text     "ip"
+    t.text     "referer"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
