@@ -58,7 +58,6 @@ class MarkovChain
 
   private
   def random_chord(chord_prob)
-    puts "chord_prob: #{chord_prob.inspect}"
     prob_array = []
     chord_array = []
     total = 0
@@ -70,14 +69,10 @@ class MarkovChain
       index += 1
     end
 
-    puts "prob_array: #{prob_array.inspect}"
-    puts "chord_array: #{chord_array.inspect}"
-
     r = rand
-    puts "r: #{r}"
     i = 0
     i += 1 until prob_array[i] > r
-    puts "i: #{i}"
-    chord_array[i].tap{|x| puts "returning: #{x}"}
+
+    chord_array[i]
   end
 end
