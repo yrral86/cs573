@@ -21,8 +21,13 @@
 <% @sequences.each do |sequence| %>
   <tr>
     <td><%= sequence.src %></td>
+    <% count = 0 %>
     <% sequence.ordered_chords.each do |chord| %>
       <td><%= chord.name %></td>
+      <% count += 1 %>
+    <% end %>
+    <% (10-count).times do %>
+      <td></td>
     <% end %>
     <td><%= link_to 'Show', sequence %></td>
     <td><%= link_to 'Edit', edit_sequence_path(sequence) %></td>

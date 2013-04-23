@@ -6,13 +6,30 @@
 </p>
 
 <% (1..10).to_a.each do |position| %>
-
+<% chord = @sequence.ordered_chords[position - 1] %>
+<% unless chord.nil? %>
 <p>
   <b>Chord <%= position %>:</b>
-  <% chord = @sequence.ordered_chords[position - 1] %>
-  <%= chord.name unless chord.nil?  %>
+  <%= chord.name  %>
 </p>
+<% end %>
+<% end %>
 
+<% if @sequence.seed %>
+<p>
+  <b>Seed:</b>
+  <%= link_to @sequence.seed.to_csv, @sequence.seed %>
+</p>
+<% end %>
+
+<% children = @sequence.children %>
+<% if children.size > 0 %>
+<% children.each do |child| %>
+<p>
+  <b>Child:</b>
+  <%= link_to child.to_csv, child %>
+</p>
+<% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_sequence_path(@sequence) %> |

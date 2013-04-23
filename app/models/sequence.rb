@@ -1,6 +1,8 @@
 class Sequence < ActiveRecord::Base
   attr_accessible :src, :seed_id
   has_many :chords, :order => 'position'
+  belongs_to :seed, :class_name => 'Sequence'
+  has_many :children, :class_name => 'Sequence', :foreign_key => 'seed_id'
 
   def ordered_chords
     @ordered_chords ||= ChordSequence.where(:sequence_id => self.id).order(:position).map do |cs|
