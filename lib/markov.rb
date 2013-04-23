@@ -56,6 +56,18 @@ class MarkovChain
     end
   end
 
+  def save_model(fn)
+    data = Marshal.dump(@occurrances)
+    open(fn,'wb') do |f|
+      f.puts data
+    end
+  end
+
+  def load_model(fn)
+    data = File.read(fn)
+    @occurrances = Marshal.load(data)
+  end
+
   private
   def random_chord(chord_prob)
     prob_array = []
