@@ -1,8 +1,4 @@
 class Composer < ActiveRecord::Base
-  def self.j48(seed)
-    self.compose(seed, :j48)
-  end
-
   def self.compose(seed, model)
     Spawnling.new do
       if model == :markov
@@ -19,7 +15,7 @@ class Composer < ActiveRecord::Base
           arff_name = File.join(script_dir, "j48#{arff_name}")
         elsif model == :randomforests
           `bash -c 'cd #{script_dir}; ./compose-randomforests'`
-          arff_name = File.join(script_dir, "randomforests#{arff_name}")
+          arff_name = File.join(script_dir, "randomforest#{arff_name}")
         end
         array = []
         File.open(arff_name, "r") do |file|

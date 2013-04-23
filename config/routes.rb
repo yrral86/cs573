@@ -5,6 +5,7 @@ TuringTest::Application.routes.draw do
   post "compose/j48"
 
   get "compose/randomforests"
+  post "compose/randomforests"
 
   get "compose/markov"
 
