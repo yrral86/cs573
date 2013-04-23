@@ -11,7 +11,7 @@
 #### experiment control #######################
 
 Learners="j48" # oner randomforest"
-Data="gnr_4"
+Data="data"
 Init="init"
 
 #### learners, treatments, etc ################
