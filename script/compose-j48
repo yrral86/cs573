@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# IMPORTANT: this code requires "getgawk" be run
+# *once* prior to execution
+
+. config.sh
+
+#### system stuff #############################
+
+
+#### experiment control #######################
+
+Learners="j48" # oner randomforest"
+Data="gnr_4"
+Init="init"
+
+#### learners, treatments, etc ################
+
+j48() {
+    $Weka weka.classifiers.trees.J48  -C 0.25 -M 2 -p 0 -t $1 -d j48.model
+}
+
+oner() {
+    $Weka weka.classifiers.rules.OneR -p 0 -t $1 -d oner.model
+}
+
+randomforest() {
+    local learner='weka.classifiers.trees.RandomForest -I 10 -K 0 -S 1'
+    $Weka $learner -p 0 -t $1 -d randomforest.model
+}
+
+j48_p() {
+    $Weka weka.classifiers.trees.J48 -p 2-4 -T $1 -l j48.model
+}
+
+oner_p() {
+    $Weka weka.classifiers.rules.OneR -p 2-4 -T $1 -l oner.model
+}
+
+randomforest_p() {
+    $Weka weka.classifiers.trees.RandomForest -p 2-4 -T $1 -l randomforest.model
+}
+
+#### slow time generation of results ##########
+
+# note the use of blab- tells you what is
+# going on with very long runs
+
+run() {
+    for Datum in $Data;do
+	for Learner in $Learners; do
+	    model=${Learner}.model
+	    if [ ! -f $model ]
+	    then $Learner $Datum.arff > /dev/null
+	    fi
+
+	    output=${Learner}_compose.arff
+
+	    cp ${Init}.arff $output
+
+	    for i in `seq 10`; do
+		next=`${Learner}_p $output | tail -2 | head -1 | perl -p -e 's/.+:.+:(\S*).*\((.*)\)/\2,\1,?/'`
+		echo $next >> $output
+	    done
+	done
+    done
+}
+
+#### work starts here ###################
+
+run

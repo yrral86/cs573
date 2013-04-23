@@ -5,6 +5,7 @@ class ComposeController < ApplicationController
   def j48
     if params[:sequence]
       s = Sequence.new_from_params(params, "seed")
+      Composer.j48(s)
       redirect_to s
     else
       @chord_options = Chord.all_options

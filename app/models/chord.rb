@@ -4,17 +4,17 @@ class Chord < ActiveRecord::Base
   def self.cached_find(id)
     @chords ||= []
     if @chords[id].nil?
-      @chords[id] = Chord.find(id)
+      @chords[id] = self.find(id)
     end
     @chords[id]
   end
 
   def self.cached_find_by_name(name)
-    @chord_names ||= []
-    if @chords[name].nil?
-      @chords[name] = Chord.find_by_name(name)
+    @chord_names ||= {}
+    if @chord_names[name].nil?
+      @chord_names[name] = self.find_by_name(name)
     end
-    @chords[name]
+    @chord_names[name]
   end
 
   def self.all_options
