@@ -12,7 +12,7 @@
 
 Learners="randomforest"
 Data="data"
-Init="init"
+Init="init_randomforests"
 
 #### learners, treatments, etc ################
 

@@ -21,7 +21,7 @@ class Composer < ActiveRecord::Base
           end
         else
           # prepare arff files
-          init_file = File.join(script_dir, "init.arff")
+          init_file = File.join(script_dir, "init_#{model}.arff")
           FileUtils.cp(File.join(script_dir, "init_header.arff"),
                        init_file)
           File.open(init_file, 'a') { |file| file.write(seed.to_csv + ",?\n") }

@@ -12,7 +12,7 @@
 
 Learners="j48" # oner randomforest"
 Data="data"
-Init="init"
+Init="init_j48"
 
 #### learners, treatments, etc ################
 

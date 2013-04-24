@@ -12,7 +12,7 @@
 
 Learners="oner"
 Data="data"
-Init="init"
+Init="init_oner"
 
 #### learners, treatments, etc ################
 

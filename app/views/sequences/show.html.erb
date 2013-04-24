@@ -5,6 +5,11 @@
   <%= @sequence.src %>
 </p>
 
+<p>
+  <b>Play:</b>
+  <%= link_to "<button>play</button>".html_safe, "#", {:onclick => "javascript:play_sequence('#{@sequence.ordered_chords.map{|c| c.file}.join("','")}');"} %>
+</p>
+
 <% (1..10).to_a.each do |position| %>
 <% chord = @sequence.ordered_chords[position - 1] %>
 <% unless chord.nil? %>
