@@ -21,6 +21,12 @@ class ComposeController < ApplicationController
   end
 
   def markov
+    if params[:sequence]
+      s = compose_sequence(params, :markov)
+      redirect_to s
+    else
+      @chord_options = Chord.all_options
+    end
   end
 
   private

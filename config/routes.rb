@@ -8,6 +8,7 @@ TuringTest::Application.routes.draw do
   post "compose/randomforests"
 
   get "compose/markov"
+  post "compose/markov"
 
   resources :sequences
 
