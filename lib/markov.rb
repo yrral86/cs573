@@ -47,13 +47,29 @@ class MarkovChain
   end
 
   # input: array of #(order) chord names
-  def next_note(chords)
+  def next_chord(chords)
     prior_key = chords.join(",")
     if @probabilities[prior_key].nil?
       random_chord @probabilities[:priorless]
     else
       random_chord @probabilities[prior_key]
     end
+  end
+
+  # input: seed- array of #(order) chord names
+  #        count- number of chords to generate
+  # output:
+  #        array of #(count) chord names
+  def compose(seed, count=10)
+    song = []
+    chords = seed.dup
+    until count == 0
+      chord = next_chord(chords)
+      song << chord
+      chords = chords[1..-1] + [chord]
+      count -= 1
+    end
+    song
   end
 
   def save_model(fn)
