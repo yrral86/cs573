@@ -1,5 +1,4 @@
 function play_sequence(a,b,c,d,e,f,g,h,i,j) {
-    alert([a,b,c,d,e,f,g,h,i,j].join());
     var sounds = []
     sounds[0] = new buzz.sound("/audio/" + a);
     sounds[1] = new buzz.sound("/audio/" + b);
