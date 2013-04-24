@@ -73,7 +73,8 @@ class MarkovChain
   end
 
   def save_model(fn)
-    data = Marshal.dump(@occurrances)
+    array = [@occurrances, @probabilities]
+    data = Marshal.dump(array)
     open(fn,'wb') do |f|
       f.puts data
     end
@@ -81,7 +82,9 @@ class MarkovChain
 
   def load_model(fn)
     data = File.read(fn)
-    @occurrances = Marshal.load(data)
+    array = Marshal.load(data)
+    @occurrances = array[0]
+    @probabilities = array[1]
   end
 
   private

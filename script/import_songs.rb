@@ -6,7 +6,7 @@ end
 
 chords = []
 files.each do |s|
-  chords << extract_chords(s)  
+  chords << extract_chords(s)
 end
 
 chords.each do |s|
