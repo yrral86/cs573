@@ -37,4 +37,4 @@ end
 
 song = m.compose(ARGV)
 
-puts song.inspect
+puts song.join ","
