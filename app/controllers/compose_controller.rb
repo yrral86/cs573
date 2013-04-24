@@ -20,6 +20,15 @@ class ComposeController < ApplicationController
     end
   end
 
+  def oner
+    if params[:sequence]
+      s = compose_sequence(params, :oner)
+      redirect_to s
+    else
+      @chord_options = Chord.all_options
+    end
+  end
+
   def markov
     if params[:sequence]
       s = compose_sequence(params, :markov)

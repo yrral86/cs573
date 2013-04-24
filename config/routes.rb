@@ -7,6 +7,9 @@ TuringTest::Application.routes.draw do
   get "compose/randomforests"
   post "compose/randomforests"
 
+  get "compose/oner"
+  post "compose/oner"
+
   get "compose/markov"
   post "compose/markov"
 

@@ -20,6 +20,9 @@ class Composer < ActiveRecord::Base
         elsif model == :randomforests
           `bash -c 'cd #{script_dir}; ./compose-randomforests'`
           arff_name = File.join(script_dir, "randomforest#{arff_name}")
+        elsif model == :oner
+          `bash -c 'cd #{script_dir}; ./compose-oner'`
+          arff_name = File.join(script_dir, "oner#{arff_name}")
         end
         array = []
         File.open(arff_name, "r") do |file|
