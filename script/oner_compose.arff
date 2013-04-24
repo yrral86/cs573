@@ -7,3 +7,13 @@
  
 @DATA
 D5,C5,A5,?
+C5,A5,D5,?
+A5,D5,C5,?
+D5,C5,Bb,?
+C5,Bb,G5,?
+Bb,G5,C5,?
+G5,C5,Bb,?
+C5,Bb,G5,?
+Bb,G5,C5,?
+G5,C5,Bb,?
+C5,Bb,G5,?
