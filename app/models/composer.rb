@@ -4,9 +4,11 @@ class Composer < ActiveRecord::Base
       script_dir = Rails.root.join("script")
       if model == :markov
         args = seed.ordered_chords.map{|c| c.name}.join(' ')
-        csv = `bash -c 'cd #{script_dir}; ruby compose-markov.rb #{args}'`
-        csv.chomp!
-        Sequence.new_from_csv(csv, model, seed)
+        3.times do
+          csv = `bash -c 'cd #{script_dir}; ruby compose-markov.rb #{args}'`
+          csv.chomp!
+          Sequence.new_from_csv(csv, model, seed)
+        end
       else
         # prepare arff files
         init_file = File.join(script_dir, "init.arff")
