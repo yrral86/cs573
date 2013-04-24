@@ -1,6 +1,9 @@
 TuringTest::Application.routes.draw do
   get "compose/index"
 
+  get "compose/all"
+  post "compose/all"
+
   get "compose/j48"
   post "compose/j48"
 

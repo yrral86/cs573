@@ -6,10 +6,10 @@
 @ATTRIBUTE class {E5,D5,A5,B5,G5,C#5,F5,C5,Bb,F#5,A/C#,C7-/13,B,F#m,C#,C,A,D,E,Bm,C#m,G,Am,G7,G#,E7,F#,Db,Bb/C,F9,F,C9,Em,Bm7,Bm11,D9,G6,F#7,Bm11/C#,Bm11/D,E7/9,A#}
  
 @DATA
-D5,C5,A5,?
-C5,A5,D5,?
-A5,D5,C5,?
-D5,C5,Bb,?
+D5,E5,C5,?
+D5,E5,C5,?
+D5,E5,C5,?
+E5,C5,Bb,?
 C5,Bb,G5,?
 Bb,G5,C5,?
 G5,C5,Bb,?
@@ -17,3 +17,5 @@ C5,Bb,G5,?
 Bb,G5,C5,?
 G5,C5,Bb,?
 C5,Bb,G5,?
+Bb,G5,C5,?
+G5,C5,Bb,?

@@ -2,6 +2,15 @@ class ComposeController < ApplicationController
   def index
   end
 
+  def all
+    if params[:sequence]
+      s = compose_sequence(params, :all)
+      redirect_to s
+    else
+      @chord_options = Chord.all_options
+    end
+  end
+
   def j48
     if params[:sequence]
       s = compose_sequence(params, :j48)
