@@ -1,2 +1,13 @@
-<h1>RunTest#next</h1>
-<p>Find me in app/views/run_test/next.html.erb</p>
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %></div>
+<script type="text/javascript">$(document).ready(function() {show_proceed();});</script>
+<% end %>
+<%= link_to "<button>play</button>".html_safe, "#", {:onclick => "javascript:play_sequence('#{@trial.sequence.ordered_chords.map{|c| c.name}.join("','")}');"} %>
+<div class="proceed">
+  <%= form_for @trial.sequence, {:url => run_test_next_path, :method => :post} do |f| %>
+    <%= f.radio_button :src, :human, :checked => false %>Human<br />
+    <%= f.radio_button :src, :computer, :checked => false %>Computer<br />
+    <%= f.hidden_field :id %>
+    <%= f.submit "next" %>
+  <% end %>
+</div>

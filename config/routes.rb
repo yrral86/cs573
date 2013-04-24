@@ -27,6 +27,7 @@ TuringTest::Application.routes.draw do
   get "run_test/start"
 
   get "run_test/next"
+  post "run_test/next"
 
   get "run_test/finish"
 

@@ -15,6 +15,17 @@ class Sequence < ActiveRecord::Base
     ordered_chords.map{ |c| c.name }.join(",")
   end
 
+  def self.random_id
+    query = nil
+    if rand < 0.5
+      query = self.where(:src => :human)
+    else
+      query = self.where("src != 'human' and src != 'seed'")
+    end
+    offset = rand(query.count)
+    query.first(:offset => offset).id
+  end
+
   def self.new_from_csv(csv, src, seed=nil)
     chords = csv.split(",")
     array = []
