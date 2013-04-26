@@ -1,4 +1,6 @@
 TuringTest::Application.routes.draw do
+  get "results/index"
+
   get "compose/index"
 
   get "compose/all"
