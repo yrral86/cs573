@@ -10,9 +10,9 @@
 
 #### experiment control #######################
 
-Learners="randomforest"
+Learners="randomforest j48 oner"
 Data="data"
-Init="init_randomforests"
+Init="init"
 
 #### learners, treatments, etc ################
 
@@ -30,21 +30,18 @@ randomforest() {
 }
 
 j48_p() {
-    $Weka weka.classifiers.trees.J48 -p 2-4 -T $1 -l j48.model
+    $Weka weka.classifiers.trees.J48 -p 2-5 -T $1 -l j48.model
 }
 
 oner_p() {
-    $Weka weka.classifiers.rules.OneR -p 2-4 -T $1 -l oner.model
+    $Weka weka.classifiers.rules.OneR -p 2-5 -T $1 -l oner.model
 }
 
 randomforest_p() {
-    $Weka weka.classifiers.trees.RandomForest -p 2-4 -T $1 -l randomforest.model
+    $Weka weka.classifiers.trees.RandomForest -p 2-5 -T $1 -l randomforest.model
 }
 
 #### slow time generation of results ##########
-
-# note the use of blab- tells you what is
-# going on with very long runs
 
 run() {
     for Datum in $Data;do

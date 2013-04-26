@@ -1,8 +1,7 @@
 class MarkovChain
-  def initialize(order=3)
+  def initialize()
     @occurrances = {}
     @probabilities = {}
-    @order = order
   end
 
   # input: array of #(order + 1) chord names

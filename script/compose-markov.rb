@@ -18,7 +18,7 @@ unless File.file?(fn)
   m = MarkovChain.new
 
   chords.each do |s|
-    s.each_cons(4) do |c|
+    s.each_cons(5) do |c|
       m.record_occurance(c)
     end
   end
@@ -30,8 +30,8 @@ end
 m = MarkovChain.new
 m.load_model(fn)
 
-if (ARGV.size != 3)
-  puts "Usage: #{$0} chord_name_1 chord_name_2 chord_name_3"
+if (ARGV.size != 4)
+  puts "Usage: #{$0} chord_name_1 chord_name_2 chord_name_3 chord_name_4"
   exit
 end
 
