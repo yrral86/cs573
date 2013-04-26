@@ -4,10 +4,25 @@ Human Trials: <%= @human_trials.count %><br />
 Computer Trials: <%= @computer_trials.count %><br />
 <br />
 <h3>Human</h3>
-Correct: <%= @correct_human_trials.count %><br />
-Incorrect: <%= @incorrect_human_trials.count %><br />
+Human: <%= @correct_human_trials.count %><br />
+Computer: <%= @incorrect_human_trials.count %><br />
 <br />
 <h3>Computer</h3>
-Correct: <%= @correct_computer_trials.count %><br />
-Incorrect: <%= @incorrect_computer_trials.count %><br />
-<br />
+Computer: <%= @correct_computer_trials.count %><br />
+Human: <%= @incorrect_computer_trials.count %><br />
+<h5>C4.5</h5>
+Computer: <%= @correct_j48_trials.count %><br />
+Human: <%= @incorrect_j48_trials.count %><br />
+Total: <%= @j48_trials.count %><br />
+<h5>Random Forests</h5>
+Computer: <%= @correct_randomforests_trials.count %><br />
+Human: <%= @incorrect_randomforests_trials.count %><br />
+Total: <%= @randomforests_trials.count %><br />
+<h5>OneR</h5>
+Computer: <%= @correct_oner_trials.count %><br />
+Human: <%= @incorrect_oner_trials.count %><br />
+Total: <%= @oner_trials.count %><br />
+<h5>Markov Chains</h5>
+Computer: <%= @correct_markov_trials.count %><br />
+Human: <%= @incorrect_markov_trials.count %><br />
+Total: <%= @markov_trials.count %><br />
