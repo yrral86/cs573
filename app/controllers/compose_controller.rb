@@ -11,27 +11,9 @@ class ComposeController < ApplicationController
     end
   end
 
-  def j48
+  def weka
     if params[:sequence]
-      s = compose_sequence(params, :j48)
-      redirect_to s
-    else
-      @chord_options = Chord.all_options
-    end
-  end
-
-  def randomforests
-    if params[:sequence]
-      s = compose_sequence(params, :randomforests)
-      redirect_to s
-    else
-      @chord_options = Chord.all_options
-    end
-  end
-
-  def oner
-    if params[:sequence]
-      s = compose_sequence(params, :oner)
+      s = compose_sequence(params, :weka)
       redirect_to s
     else
       @chord_options = Chord.all_options
@@ -48,9 +30,9 @@ class ComposeController < ApplicationController
   end
 
   private
-  def compose_sequence(params, model)
+  def compose_sequence(params, method)
     s = Sequence.new_from_params(params, "seed")
-    Composer.compose(s, model)
+    Composer.compose(s, method)
     s
   end
 end

@@ -1,53 +1,49 @@
-class Composer < ActiveRecord::Base
-  def self.compose(seed, model)
-    if model == :all
-      logger.debug("spawing markov")
+class Composer
+  def self.compose(seed, method)
+    if method == :all
+      Rails.logger.debug("spawing markov")
       self.compose(seed, :markov)
-      logger.debug("spawing j48")
-      self.compose(seed, :j48)
-      logger.debug("spawing randomforests")
-      self.compose(seed, :randomforests)
-      logger.debug("spawing oner")
+      Rails.logger.debug("spawing weka")
       self.compose(seed, :oner)
     else
       Spawnling.new do
         script_dir = Rails.root.join("script")
-        if model == :markov
+        if method == :markov
           args = seed.ordered_chords.map{|c| c.name}.join(' ')
           3.times do
             csv = `bash -c 'cd #{script_dir}; ruby compose-markov.rb #{args}'`
             csv.chomp!
-            Sequence.new_from_csv(csv, model, seed)
+            Sequence.new_from_csv(csv, method, seed)
           end
         else
           # prepare arff files
-          init_file = File.join(script_dir, "init_#{model}.arff")
+          init_file = File.join(script_dir, "init.arff")
           FileUtils.cp(File.join(script_dir, "init_header.arff"),
                        init_file)
           File.open(init_file, 'a') { |file| file.write(seed.to_csv + ",?\n") }
-          arff_name = "_compose.arff"
-          if model == :j48
-            `bash -c 'cd #{script_dir}; ./compose-j48'`
-            arff_name = File.join(script_dir, "j48#{arff_name}")
-          elsif model == :randomforests
-            `bash -c 'cd #{script_dir}; ./compose-randomforests'`
-            arff_name = File.join(script_dir, "randomforest#{arff_name}")
-          elsif model == :oner
-            `bash -c 'cd #{script_dir}; ./compose-oner'`
-            arff_name = File.join(script_dir, "oner#{arff_name}")
-          end
-          array = []
-          File.open(arff_name, "r") do |file|
-            line = file.gets
-            until line =~ /^@DATA/ do
+          `bash -c 'cd #{script_dir}; ./compose-weka'`
+
+          Rails.logger.debug("weka done, processing arffs")
+          [:j48, :randomforests, :oner].each do |model|
+            Rails.logger.debug("processing #{model}_compose.arff")
+            arff_name = File.join(script_dir, "#{model}_compose.arff")
+            array = []
+            File.open(arff_name, "r") do |file|
+              Rails.logger.debug("file opened")
               line = file.gets
+              until line =~ /^@DATA/ do
+                line = file.gets
+              end
+              # skip first line, it is the seed
+              line = file.gets
+              while line = file.gets
+                # index = number of priors - 1
+                array << line.split(",")[3]
+              end
             end
-            line = file.gets
-            while line = file.gets
-              array << line.split(",")[2]
-            end
+            Rails.logger.debug("finished processing #{model}_compose.arff, creating sequence from array: #{array.inspect}")
+            Sequence.new_from_csv(array.join(","), model, seed)
           end
-          Sequence.new_from_csv(array.join(","), model, seed)
         end
       end
     end

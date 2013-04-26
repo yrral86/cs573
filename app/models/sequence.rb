@@ -37,7 +37,7 @@ class Sequence < ActiveRecord::Base
 
   def self.new_from_params(params, src, seed=nil)
     array = []
-    (1..3).to_a.each do |i|
+    (1..4).to_a.each do |i|
       array << params[:sequence]["chord#{i}".to_sym]
     end
     self.new_from_array(array, src, seed)

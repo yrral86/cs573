@@ -10,7 +10,7 @@
 
 #### experiment control #######################
 
-Learners="randomforest j48 oner"
+Learners="randomforests j48 oner"
 Data="data"
 Init="init"
 
@@ -24,7 +24,7 @@ oner() {
     $Weka weka.classifiers.rules.OneR -p 0 -t $1 -d oner.model
 }
 
-randomforest() {
+randomforests() {
     local learner='weka.classifiers.trees.RandomForest -I 10 -K 0 -S 1'
     $Weka $learner -p 0 -t $1 -d randomforest.model
 }
@@ -37,7 +37,7 @@ oner_p() {
     $Weka weka.classifiers.rules.OneR -p 2-5 -T $1 -l oner.model
 }
 
-randomforest_p() {
+randomforests_p() {
     $Weka weka.classifiers.trees.RandomForest -p 2-5 -T $1 -l randomforest.model
 }
 

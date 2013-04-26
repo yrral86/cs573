@@ -6,14 +6,8 @@ TuringTest::Application.routes.draw do
   get "compose/all"
   post "compose/all"
 
-  get "compose/j48"
-  post "compose/j48"
-
-  get "compose/randomforests"
-  post "compose/randomforests"
-
-  get "compose/oner"
-  post "compose/oner"
+  get "compose/weka"
+  post "compose/weka"
 
   get "compose/markov"
   post "compose/markov"
