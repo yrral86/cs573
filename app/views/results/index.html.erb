@@ -1,2 +1,13 @@
-<h1>Results#index</h1>
-<p>Find me in app/views/results/index.html.erb</p>
+<h1>Results</h1>
+Total Trials: <%= @all_trials.count %><br />
+Human Trials: <%= @human_trials.count %><br />
+Computer Trials: <%= @computer_trials.count %><br />
+<br />
+<h3>Human</h3>
+Correct: <%= @correct_human_trials.count %><br />
+Incorrect: <%= @incorrect_human_trials.count %><br />
+<br />
+<h3>Computer</h3>
+Correct: <%= @correct_computer_trials.count %><br />
+Incorrect: <%= @incorrect_computer_trials.count %><br />
+<br />
