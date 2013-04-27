@@ -1,5 +1,5 @@
-Jar="/usr/share/java/weka.jar"
-Weka="java -Xmx2048M -cp $Jar  "
+Jar="${HOME}/weka.jar"
+Weka="java -Xmx256M -cp $Jar  "
 
 
 Cart="weka.classifiers.trees.M5P -R"
