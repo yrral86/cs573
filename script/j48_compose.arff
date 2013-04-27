@@ -7,14 +7,14 @@
 @ATTRIBUTE class {G,A7,G#,A,F#,F,E7,D,B,C,C#,B7,Em,D/F#,A5,E5,B/A,C/A,D/A,Bm,E,Gm7,Bb,Eb,Gm,Am,Bb5,G5,F#5,B5,D5,C#5,F5,C5,A/C#,C7-/13,F#m,C#m,G7,Db,Bb/C,F9,G#m,Cm,C9,Bm7,Bm11,D9,G6,F#7,Bm11/C#,Bm11/D,E7/9,A#,D7,D#,F#m7}
  
 @DATA
-G5,B5,C5,D,?
-B5,C5,D,D,?
-C5,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
-D,D,D,D,?
+E5,D5,A5,G5,?
+D5,A5,G5,E5,?
+A5,G5,E5,E5,?
+G5,E5,E5,B5,?
+E5,E5,B5,A5,?
+E5,B5,A5,B5,?
+B5,A5,B5,A5,?
+A5,B5,A5,E5,?
+B5,A5,E5,B5,?
+A5,E5,B5,A5,?
+E5,B5,A5,B5,?
