@@ -7,6 +7,7 @@ end
 def name_to_file(chord_name)
   file = chord_name.gsub(/#/, 'sharp')
   file.gsub!(/b/, 'flat')
+  file.gsub!(/m/, 'minor')
   file.gsub!(/-/, '')
   file.gsub!(/\//, '')
   "#{file}.ogg"
