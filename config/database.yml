@@ -52,7 +52,7 @@ test:
 
 production:
   adapter: mysql2
-  encoding: unicode
+  encoding: utf-8
   database: turing_test_production
   pool: 5
   username: turing_test
