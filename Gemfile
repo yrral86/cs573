@@ -7,6 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'sqlite3'
+gem 'mysql2'
+gem 'unicorn'
 
 # for spawning composer processes
 gem 'spawnling', '~>2.0'

@@ -51,11 +51,11 @@ test:
   timeout: 10000
 
 production:
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   database: turing_test_production
   pool: 5
   username: turing_test
-  password:
+  password: sd8fn490sdn2390ASDFn3UIBJKH567iYy8YASHdasdASFzser5456gzs8dfhsgdadf4353fg
   reconnect: true
   timeout: 10000
