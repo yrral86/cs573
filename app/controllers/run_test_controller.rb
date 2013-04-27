@@ -9,6 +9,7 @@ class RunTestController < ApplicationController
   end
 
   def next
+    logger.debug("in next, params=#{params.inspect}, session=#{session.inspect}")
     if params[:sequence]
       @trial = SequenceTrial.where(:test_session_id => @test_session.id,
                                    :sequence_id => params[:sequence][:id]).first
@@ -27,20 +28,22 @@ class RunTestController < ApplicationController
           end
         end
         @trial.save
+        session[:sequence_trial_id] = nil
       else
         flash[:notice] = "Please select human or computer"
-        session[:sequence_trial_id] = @trial.id
       end
       redirect_to :action => :next
     else
-      @trial_count = @test_session.sequence_trials.size
+      @trial_count = @test_session.sequence_trials.where("correct IS NOT NULL").size
       if @trial_count < 10
-        if flash[:notice]
-          @trial = SequenceTrial.find(session[:sequence_trial_id])
-        else
+        logger.debug ("stid: #{session[:sequence_trial_id]}, stid2: #{session['sequence_trial_id']}")
+        if session[:sequence_trial_id].nil?
           @trial = SequenceTrial.new(:test_session_id => @test_session.id,
                                      :sequence_id => Sequence.random_id)
           @trial.save
+          session[:sequence_trial_id] = @trial.id
+        else
+          @trial = SequenceTrial.find(session[:sequence_trial_id])
         end
       else
         redirect_to :action => :finish
