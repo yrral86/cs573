@@ -1,6 +1,40 @@
 // Place all the styles related to the run_test controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.proceed {
+div.test {
+  margin: 25px;
+  width: 50%;
+}
+
+div.proceed {
   display: none;
+}
+
+div.progress_details {
+  float: left;
+  margin-left: 25%;
+}
+
+div.progress {
+  border-style: solid;
+  border-color: blue;
+  width: 50%;
+  height: 20px;
+  padding: 0px;
+}
+
+.progress div {
+  width: 10%;
+  height: 100%;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.progress div.filled {
+  background-color: blue;
+}
+
+.progress div.unfilled {
+  background-color: white;
 }

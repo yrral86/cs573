@@ -33,7 +33,8 @@ class RunTestController < ApplicationController
       end
       redirect_to :action => :next
     else
-      if @test_session.sequence_trials.size < 10
+      @trial_count = @test_session.sequence_trials.size
+      if @trial_count < 10
         if flash[:notice]
           @trial = SequenceTrial.find(session[:sequence_trial_id])
         else
