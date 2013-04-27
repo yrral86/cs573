@@ -26,7 +26,7 @@ oner() {
 
 randomforests() {
     local learner='weka.classifiers.trees.RandomForest -I 10 -K 0 -S 1'
-    $Weka $learner -p 0 -t $1 -d randomforest.model
+    $Weka $learner -p 0 -t $1 -d randomforests.model
 }
 
 j48_p() {
@@ -38,7 +38,7 @@ oner_p() {
 }
 
 randomforests_p() {
-    $Weka weka.classifiers.trees.RandomForest -p 2-5 -T $1 -l randomforest.model
+    $Weka weka.classifiers.trees.RandomForest -p 2-5 -T $1 -l randomforests.model
 }
 
 #### slow time generation of results ##########
