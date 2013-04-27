@@ -14,3 +14,7 @@ Gemfile.lock
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore intermediate arff files
+script/init.arff
+script/*_compose.arff
