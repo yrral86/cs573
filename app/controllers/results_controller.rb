@@ -20,4 +20,15 @@ class ResultsController < ApplicationController
     @correct_markov_trials = SequenceTrial.correct_markov_trials
     @incorrect_markov_trials = SequenceTrial.incorrect_markov_trials
   end
+
+  def test
+    where = SequenceTrial.where(:test_session_id => @test_session.id)
+    @all_trials = where.completed_trials
+    @human_trials = where.human_trials
+    @correct_human_trials = where.correct_human_trials
+    @incorrect_human_trials = where.incorrect_human_trials
+    @computer_trials = where.computer_trials
+    @correct_computer_trials = where.correct_computer_trials
+    @incorrect_computer_trials = where.incorrect_computer_trials
+  end
 end

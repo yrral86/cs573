@@ -1,0 +1,13 @@
+<h1>Results</h1>
+Total Trials: <%= @all_trials.count %><br />
+Human Trials: <%= @human_trials.count %><br />
+Computer Trials: <%= @computer_trials.count %><br />
+<br />
+<h3>Human</h3>
+Human: <%= @correct_human_trials.count %><br />
+Computer: <%= @incorrect_human_trials.count %><br />
+<br />
+<h3>Computer</h3>
+Computer: <%= @correct_computer_trials.count %><br />
+Human: <%= @incorrect_computer_trials.count %><br />
+<%= link_to "Reset Test", run_test_reset_path %>

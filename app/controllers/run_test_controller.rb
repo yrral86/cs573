@@ -54,6 +54,11 @@ class RunTestController < ApplicationController
   def finish
     @test_session.end_time = Time.now
     @test_session.save
+    redirect_to :controller => :results, :action => :test
+  end
+
+  def reset
     reset_session
+    redirect_to :action => :index
   end
 end

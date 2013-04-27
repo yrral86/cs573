@@ -1,21 +1,21 @@
 TuringTest::Application.routes.draw do
-  get "results/index"
+#  get "results/index"
 
-  get "compose/index"
+#  get "compose/index"
 
-  get "compose/all"
-  post "compose/all"
+#  get "compose/all"
+#  post "compose/all"
 
-  get "compose/weka"
-  post "compose/weka"
+#  get "compose/weka"
+#  post "compose/weka"
 
-  get "compose/markov"
-  post "compose/markov"
+#  get "compose/markov"
+#  post "compose/markov"
 
-  resources :sequences
+#  resources :sequences
 
 
-  resources :chords
+#  resources :chords
 
 
   get "run_test/index"
@@ -26,6 +26,9 @@ TuringTest::Application.routes.draw do
   post "run_test/next"
 
   get "run_test/finish"
+  get "run_test/reset"
+
+  get "results/test"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
