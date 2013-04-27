@@ -6,6 +6,8 @@ class Composer
       Rails.logger.debug("spawing weka")
       self.compose(seed, :oner)
     else
+      # cache ordered_chords before forking
+      seed.ordered_chords
       Spawnling.new do
         script_dir = Rails.root.join("script")
         if method == :markov
