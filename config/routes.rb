@@ -1,5 +1,6 @@
 TuringTest::Application.routes.draw do
   get "results/index"
+  match "results/details/:method" => 'results#details'
 
 #  get "compose/index"
 

@@ -31,4 +31,17 @@ class ResultsController < ApplicationController
     @correct_computer_trials = where.correct_computer_trials
     @incorrect_computer_trials = where.incorrect_computer_trials
   end
+
+  def details
+    case params[:method].to_sym
+    when :markov
+      render :text => "cool"
+    when :j48
+    when :oner
+    when :randomforests
+    when :human
+    else
+      redirect_to request.referer
+    end
+  end
 end
