@@ -1,5 +1,5 @@
 TuringTest::Application.routes.draw do
-#  get "results/index"
+  get "results/index"
 
 #  get "compose/index"
 
@@ -13,7 +13,7 @@ TuringTest::Application.routes.draw do
 #  post "compose/markov"
 
 #  resources :sequences
-
+  match "sequences/:id" => 'sequences#show'
 
 #  resources :chords
 
