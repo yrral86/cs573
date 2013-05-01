@@ -48,7 +48,7 @@ class ResultsController < ApplicationController
     end
     sequences = []
     seen = Hash.new
-    @trials.each do |t|
+    @trials.group(:sequence_id).each do |t|
       seq = t.sequence
       unless seen[seq.id]
         sequences << seq
