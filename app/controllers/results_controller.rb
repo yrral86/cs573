@@ -58,8 +58,9 @@ class ResultsController < ApplicationController
     sequences.sort! do |x, y|
       x.percent_human <=> y.percent_human
     end
-    limit = 10
-    limit = sequences.size if sequences.size < 10
+    limit = params[:limit].to_i if params[:limit]
+    limit ||= 10
+    limit = sequences.size if sequences.size < limit
     @good_sequences = sequences[-limit..-1].reverse
     @bad_sequences = sequences[0..limit-1]
   end
