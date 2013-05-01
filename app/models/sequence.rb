@@ -106,6 +106,20 @@ class Sequence < ActiveRecord::Base
     end
   end
 
+  def self.remove_same_src_duplicates
+    seen = self.find_duplicates
+    seen.each_pair do |csv, seqs|
+      while seqs.size > 0
+        primary = seqs[0]
+        matches = seqs.select{|s| s.src == primary.src}
+        matches.each do |s|
+          self.fold_into(primary, s)
+          seqs.delete(s)
+        end
+      end
+    end
+  end
+
   private
   def self.find_duplicates
     all = self.all
