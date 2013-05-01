@@ -33,15 +33,20 @@ class ResultsController < ApplicationController
   end
 
   def details
+    @trials = nil
     case params[:method].to_sym
     when :markov
-      render :text => "cool"
+      @trials = SequenceTrial.markov_trials
     when :j48
+      @trials = SequenceTrial.j48_trials
     when :oner
+      @trials = SequenceTrial.oner_trials
     when :randomforests
-    when :human
+      @trials = SequenceTrial.randomforests_trials
     else
       redirect_to request.referer
     end
+    @good_sequences = @trials.where(:correct => false).group(:sequence_id).select('sequence_trials.*, count(sequence_id) as trials').order("trials DESC").limit(10)
+    @bad_sequences = @trials.where(:correct => true).group(:sequence_id).select('sequence_trials.*, count(sequence_id) as trials').order("trials ASC").limit(10)
   end
 end

@@ -14,7 +14,7 @@ TuringTest::Application.routes.draw do
 #  post "compose/markov"
 
 #  resources :sequences
-  match "sequences/:id" => 'sequences#show'
+  match "sequences/:id" => 'sequences#show', :as => :sequence
 
 #  resources :chords
 

@@ -1,0 +1,19 @@
+<h1><%= params[:method] %></h1>
+<div class="sample_sequences">
+<h3>Good Sequences</h3>
+<% @good_sequences.each do |s| %>
+<% seq = s.sequence %>
+<%= link_to seq.to_csv, seq %>
+<div class="stats"><%= seq.percent_human %>%
+<%=  "(#{seq.human_trial_count}/#{seq.trial_count})" %></div>
+<div class="clear"></div>
+<% end %>
+<h3>Bad Sequences</h3>
+<% @bad_sequences.each do |s| %>
+<% seq = s.sequence %>
+<%= link_to seq.to_csv, seq %>
+<div class="stats"><%= seq.percent_human %>%
+<%=  "(#{seq.human_trial_count}/#{seq.trial_count})" %></div>
+<div class="clear"></div>
+<% end %>
+<div>

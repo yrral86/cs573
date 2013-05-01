@@ -3,6 +3,7 @@ class Sequence < ActiveRecord::Base
   has_many :chords, :order => 'position'
   belongs_to :seed, :class_name => 'Sequence'
   has_many :children, :class_name => 'Sequence', :foreign_key => 'seed_id'
+  has_many :sequence_trials
 
   def ordered_chords
     @ordered_chords ||= ChordSequence.where(:sequence_id => self.id).order(:position).map do |cs|
@@ -13,6 +14,21 @@ class Sequence < ActiveRecord::Base
 
   def to_csv
     ordered_chords.map{ |c| c.name }.join(",")
+  end
+
+  def percent_human
+    p = 100*human_trial_count/trial_count unless trial_count == 0
+    p = 'inf' unless p
+    p
+  end
+
+  def human_trial_count
+    human = (self.src.to_sym == :human)
+    self.sequence_trials.where(:correct => human).count
+  end
+
+  def trial_count
+    self.sequence_trials.count
   end
 
   def self.random_id

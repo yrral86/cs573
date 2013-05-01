@@ -4,15 +4,15 @@ class SequenceTrial < ActiveRecord::Base
   belongs_to :test_session
 
   def self.completed_trials
-    self.where("correct IS NOT NULL")
+    self.joins(:sequence).where("correct IS NOT NULL")
   end
 
   def self.correct_trials
-    self.where(:correct => true)
+    self.joins(:sequence).where(:correct => true)
   end
 
   def self.incorrect_trials
-    self.where(:correct => false)
+    self.joins(:sequence).where(:correct => false)
   end
 
   def self.human_trials
@@ -89,21 +89,14 @@ class SequenceTrial < ActiveRecord::Base
 
   private
   def self.select_humans(query)
-    query.select do |t|
-      t.sequence.src.to_sym == :human
-    end
+    query.where("sequences.src = 'human'")
   end
 
   def self.select_computers(query)
-    query.select do |t|
-      t.sequence.src.to_sym != :human and
-        t.sequence.src.to_sym != :seed
-    end
+    query.where("sequences.src != 'human' and sequences.src != 'seed'")
   end
 
   def self.select_model(query, model)
-    query.select do |t|
-      t.sequence.src.to_sym == model
-    end
+    query.where("sequences.src = :model", :model => model.to_s)
   end
 end
