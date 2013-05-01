@@ -1,1 +1,1 @@
-Sequence.find_duplicates
+Sequence.print_duplicates

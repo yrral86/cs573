@@ -74,14 +74,8 @@ class Sequence < ActiveRecord::Base
     s
   end
 
-  def self.find_duplicates
-    all = self.all
-    seen = Hash.new
-    all.each do |s|
-      csv = s.to_csv
-      seen[csv] = [] if seen[csv].nil?
-      seen[csv] << s
-    end
+  def self.print_duplicates
+    seen = self.find_duplicates
 
     seen.each_pair do |k, v|
       if v.size > 1
@@ -90,6 +84,46 @@ class Sequence < ActiveRecord::Base
           puts s.inspect
         end
       end
+    end
+  end
+
+  # removes learner generated sequences that are
+  # duplicates of data seen
+  # also removes duplication from human sequences
+  def self.remove_reproductions
+    seen = self.find_duplicates
+
+    seen.each_pair do |csv, seqs|
+      if seqs.size > 1
+        human = seqs.select{|s| s.src.to_sym == :human}
+        if human.size > 0
+          primary = human[0]
+          seqs.each do |s|
+            self.fold_into(primary, s)
+          end
+        end
+      end
+    end
+  end
+
+  private
+  def self.find_duplicates
+    all = self.all
+    seen = Hash.new
+    all.each do |s|
+      csv = s.to_csv
+      seen[csv] = [] if seen[csv].nil?
+      seen[csv] << s
+    end
+    seen
+  end
+
+  def self.fold_into(target, duplicate)
+    puts "folding id #{duplicate.id} into #{target.id}"
+    unless duplicate.id == target.id
+      SequenceTrial.where(:sequence_id => duplicate.id).update_all(:sequence_id => target.id)
+      ChordSequence.where(:sequence_id => duplicate.id).destroy_all
+      duplicate.destroy
     end
   end
 end
