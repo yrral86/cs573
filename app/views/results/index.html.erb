@@ -14,15 +14,19 @@ Human: <%= @incorrect_computer_trials.count %><br />
 Computer: <%= @correct_j48_trials.count %><br />
 Human: <%= @incorrect_j48_trials.count %><br />
 Total: <%= @j48_trials.count %><br />
+<%= link_to "Details", results_details_path(:j48) %>
 <h5>Random Forests</h5>
 Computer: <%= @correct_randomforests_trials.count %><br />
 Human: <%= @incorrect_randomforests_trials.count %><br />
 Total: <%= @randomforests_trials.count %><br />
+<%= link_to "Details", results_details_path(:randomforests) %>
 <h5>OneR</h5>
 Computer: <%= @correct_oner_trials.count %><br />
 Human: <%= @incorrect_oner_trials.count %><br />
 Total: <%= @oner_trials.count %><br />
+<%= link_to "Details", results_details_path(:oner) %>
 <h5>Markov Chains</h5>
 Computer: <%= @correct_markov_trials.count %><br />
 Human: <%= @incorrect_markov_trials.count %><br />
 Total: <%= @markov_trials.count %><br />
+<%= link_to "Details", results_details_path(:markov) %>
