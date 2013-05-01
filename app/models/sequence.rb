@@ -73,4 +73,23 @@ class Sequence < ActiveRecord::Base
     end
     s
   end
+
+  def self.find_duplicates
+    all = self.all
+    seen = Hash.new
+    all.each do |s|
+      csv = s.to_csv
+      seen[csv] = [] if seen[csv].nil?
+      seen[csv] << s
+    end
+
+    seen.each_pair do |k, v|
+      if v.size > 1
+        puts "Duplicates detected for csv #{k}:"
+        v.each do |s|
+          puts s.inspect
+        end
+      end
+    end
+  end
 end
