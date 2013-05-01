@@ -94,13 +94,11 @@ class Sequence < ActiveRecord::Base
     seen = self.find_duplicates
 
     seen.each_pair do |csv, seqs|
-      if seqs.size > 1
-        human = seqs.select{|s| s.src.to_sym == :human}
-        if human.size > 0
-          primary = human[0]
-          seqs.each do |s|
-            self.fold_into(primary, s)
-          end
+      human = seqs.select{|s| s.src.to_sym == :human}
+      if human.size > 0
+        primary = human[0]
+        seqs.each do |s|
+          self.fold_into(primary, s)
         end
       end
     end
@@ -129,7 +127,9 @@ class Sequence < ActiveRecord::Base
       seen[csv] = [] if seen[csv].nil?
       seen[csv] << s
     end
-    seen
+    seen.select do |csv, seq|
+      seq.size > 1
+    end
   end
 
   def self.fold_into(target, duplicate)
