@@ -56,12 +56,27 @@ class ResultsController < ApplicationController
       end
     end
     sequences.sort! do |x, y|
-      x.percent_human <=> y.percent_human
+      px = x.percent_human
+      py = y.percent_human
+      if px == py
+        x.trial_count <=> y.trial_count
+      else
+        px <=> py
+      end
     end
     limit = params[:limit].to_i if params[:limit]
     limit ||= 10
     limit = sequences.size if sequences.size < limit
     @good_sequences = sequences[-limit..-1].reverse
+    sequences.sort! do |x, y|
+      px = x.percent_human
+      py = y.percent_human
+      if px == py
+        y.trial_count <=> x.trial_count
+      else
+        px <=> py
+      end
+    end
     @bad_sequences = sequences[0..limit-1]
   end
 end
