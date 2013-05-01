@@ -46,7 +46,21 @@ class ResultsController < ApplicationController
     else
       redirect_to request.referer
     end
-    @good_sequences = @trials.where(:correct => false).group(:sequence_id).select('sequence_trials.*, count(sequence_id) as trials').order("trials DESC").limit(10)
-    @bad_sequences = @trials.where(:correct => true).group(:sequence_id).select('sequence_trials.*, count(sequence_id) as trials').order("trials ASC").limit(10)
+    sequences = []
+    seen = Hash.new
+    @trials.each do |t|
+      seq = t.sequence
+      unless seen[seq.id]
+        sequences << seq
+        seen[seq.id] = true
+      end
+    end
+    sequences.sort! do |x, y|
+      x.percent_human <=> y.percent_human
+    end
+    limit = 10
+    limit = sequences.size if sequences.size < 10
+    @good_sequences = sequences[-limit..-1].reverse
+    @bad_sequences = sequences[0..limit-1]
   end
 end
